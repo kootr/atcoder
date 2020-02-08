@@ -1,12 +1,14 @@
 s = list(input())
 t = list(input())
-s_list = [ i for i in s ]
-t_list = [ i for i in t ]
-l = len(s_list)
+l = len(s)
+cnt=0
 for x in range(l):
-    if s_list == t_list:
+    if s == t:
         print('Yes')
+        break
     else:
-        s_list[0] =  s_list[l-1]
-        print(s_list)
-print('No')
+        cnt+=1
+        s.insert(0, s[-1])
+        s=s[:len(s)-1]
+if cnt == l:
+    print('No')
