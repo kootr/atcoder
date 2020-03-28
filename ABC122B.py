@@ -1,3 +1,6 @@
+import re
 S = input()
-ans = re.findall('[A,C,G,T]{2}, S)
-print(ans)
+# for i in range(S):
+ans = [m.span() for m in re.finditer('[ACGT]', S)]
+
+print(list(ans))
