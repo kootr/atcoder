@@ -1,10 +1,8 @@
 n, m = map(int, input().split())
-M = [0]*m
+A = set({i for i in range(1,m+1)})
 for i in range(n):
     row = list(map(int, input().split()))
     k = row[0]
-    A = row[1:]
-#d = list(map(int, input().split()))
-print(k)
-print(A)
-print(M)
+    A_i = row[1:]
+    A = A & set(A_i)
+print(len(list(A)))
