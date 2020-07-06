@@ -1,0 +1,36 @@
+name: test_work_flow
+
+on:
+  pull_request
+
+jobs:
+    echo_sample:
+        if: contains(join(toJson(github.event.pull_request.labels.*.name)), 'TESTING')
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v2
+            - name: Set up Python 3.7
+              uses: actions/setup-python@v2
+              with:
+                python-version: "3.7"
+            - name: echo_text
+              run: |
+                echo ${{ github.event.pull_request.labels.*.name }}
+                echo "this is a test about GitHub Actions works or not."
+    echo_sample2:
+        if: contains(join(toJson(github.event.pull_request.labels.*.name)), 'TESTING')
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v2
+            - name: Set up Python 3.7
+              uses: actions/setup-python@v2
+              with:
+                python-version: "3.7"
+            - name: echo_text
+              run: |
+                echo "${{ toJson(github.event.pull_request.labels.*.name) }}"
+                echo "this is a test about GitHub Actions works or not."
+            - name: Dump GitHub context
+              env:
+                GITHUB_CONTEXT: ${{ toJson(github) }}
+              run: echo "$GITHUB_CONTEXT"
