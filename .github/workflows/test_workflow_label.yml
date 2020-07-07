@@ -2,7 +2,7 @@ name: test_work_flow_label
 
 on:
   label:
-    types: [created, edited, deleted, iwasawa]
+    types: [created, edited, deleted]
 
 jobs:
     echo_sample:
