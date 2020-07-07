@@ -2,7 +2,7 @@ name: test_work_flow
 
 on:
   pull_request:
-    types: [labelled]
+    types: [labeled]
 
 jobs:
     echo_sample:
