@@ -2,9 +2,13 @@ name: test_work_flow
 
 on:
   pull_request:
-    types: [labelled]
+    types: [labeled]
+    # paths:
+    #   - 'aws_lambda/emoticon_api_client_pv/**'
+    #   - '!aws_lambda/emoticon_api_client_pv/README.md'
 
 jobs:
+    if: contains(join(toJson(github.event.pull_request.labels.*.name)), 'TESTING')
     echo_sample:
         if: contains(join(toJson(github.event.pull_request.labels.*.name)), 'TESTING')
         runs-on: ubuntu-latest
@@ -30,6 +34,7 @@ jobs:
             - name: echo_text
               run: |
                 echo "${{ toJson(github.event.pull_request.labels.*.name) }}"
+                echo "${{ join(toJson(github.event.pull_request.labels.*.name)) }}"
                 echo "this is a test about GitHub Actions works or not."
             - name: Dump GitHub context
               env:
